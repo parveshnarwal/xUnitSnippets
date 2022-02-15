@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/xUnitSnippets/.vs/xUnitSnippets/v16
+/xUnitSnippets/Calculator/bin/Debug/net5.0
+/xUnitSnippets/Calculator/obj
+/xUnitSnippets/CalculatorTest/bin/Debug/net5.0
+/xUnitSnippets/CalculatorTest/obj
