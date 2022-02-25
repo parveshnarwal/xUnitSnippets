@@ -1,5 +1,4 @@
 using Calculator;
-using System;
 using Xunit;
 
 namespace CalculatorTest
@@ -34,7 +33,12 @@ namespace CalculatorTest
 
         }
 
+
+        //Using Trait attribute to group test cases
+        //Trait attribute can be used to group intergration test cases and unit test cases
+        //So that they can be executed separately if requried 
         [Fact]
+        [Trait("Category","IsEven Method")]
         public void IsEven_Method_Returs_True_With_EvenNumber()
         {
             var result = calc.IsEven(4);
@@ -44,6 +48,7 @@ namespace CalculatorTest
         }
 
         [Fact]
+        [Trait("Category", "IsEven Method")]
         public void IsEven_Method_Returs_False_With_OddNumber()
         {
             var result = calc.IsEven(3);

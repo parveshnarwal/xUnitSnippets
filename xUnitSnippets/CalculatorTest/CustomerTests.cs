@@ -1,28 +1,58 @@
 ﻿using Calculator;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace CalculatorTest
 {
-    public class CustomerTests
+
+    //Adding Fixture class to make sure we are creating only one instance of Cusstomer class, this will help in memory management 
+    public class CustomerFixture : IDisposable
     {
+        public Customer Customer => new Customer();
+
+        public void Dispose()
+        {
+            //Clean / Release the resources here 
+        }
+    }
+
+    
+    public class CustomerTests : IClassFixture<CustomerFixture>
+    {
+        private readonly CustomerFixture _customerFixture;
+
+        //Test Out Helper class is used to debug code / write messages to out
+        private readonly ITestOutputHelper _testOutputHelper;
+
+        public CustomerTests(ITestOutputHelper testOutputHelper, CustomerFixture customerFixture)
+        {
+            _customerFixture = customerFixture;
+            _testOutputHelper = testOutputHelper;
+
+            _testOutputHelper.WriteLine("Constructor CustomerTests was invoked");
+            
+        }
+
         [Fact]
         public void CheckNameNotEmpty()
         {
-            var customer = new Customer();
+            //Adding messages using test output helper class
+            _testOutputHelper.WriteLine("Creating instance of Customer Class using fixture");
+
+            var customer = _customerFixture.Customer;
 
             Assert.NotNull(customer.Name);
             Assert.NotEqual(string.Empty, customer.Name);
+
+            _testOutputHelper.WriteLine("Test CheckNameNotEmpty execution completed. Please verify results");
         }
 
         [Fact]
         public void CheckIfLegitForDiscount()
         {
-            var customer = new Customer();
+            var customer = _customerFixture.Customer;
 
             //Asserting age is between 18 and 40
             Assert.InRange(customer.Age, 18, 40);
@@ -31,8 +61,8 @@ namespace CalculatorTest
         [Fact]
         public void GetOrderIdByNameTest()
         {
-            var customer = new Customer();
-            
+            var customer = _customerFixture.Customer;
+
             //Checking if method throws exception
             var exceptionDetails = Assert.Throws<ArgumentException>(() => customer.GetOrderIdByName(""));
 
