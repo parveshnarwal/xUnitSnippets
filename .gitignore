@@ -8,3 +8,5 @@
 /xUnitSnippets/Calculator/obj
 /xUnitSnippets/CalculatorTest/bin/Debug/net5.0
 /xUnitSnippets/CalculatorTest/obj
+/xUnitSnippets/.vs
+/xUnitSnippets/CalculatorTest/bin/Release/net5.0
