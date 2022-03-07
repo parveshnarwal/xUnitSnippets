@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculator
 {
@@ -39,6 +35,35 @@ namespace Calculator
             }
 
             
+
+        }
+
+        public int CallingSampleMethodWithRefInput(int a, int b)
+        {
+            int result = a + b;
+
+            int value = 10;
+
+            _mathDatabaseService.SampleMethodWithRefInput(result, ref value);
+
+            if(value == 2 * result)
+            {
+                return 1;
+            }
+
+            else
+            {
+                return -99;
+            }
+        }
+
+        public int CallingMethodWithOutParameter(int a)
+        {
+            int result;
+
+            _mathDatabaseService.MethodWithOutParameter(a, out result);
+
+            return result;
 
         }
     }
